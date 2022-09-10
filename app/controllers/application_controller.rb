@@ -15,14 +15,25 @@ class ApplicationController < Sinatra::Base
   end
 
   # POST /comment
-      post '/movies' do
-        movie = Movie.create(title: params[:title], overview: params[:overview], vote_average: params[:vote_average])
-        movies.to_json
-      end
+      # post '/reviews' do
+      #   movie = Movie.create(title: params[:title], overview: params[:overview], vote_average: params[:vote_average])
+      #   movies.to_json
+      # end
 
   # DELETE /movies
-      delete '/movies/:id' do
+      delete '/reviews/:id' do
         movie = Movie.find(params[:id])
         movie.destroy
       end
+
+      get '/reviews' do
+        reviews = Review.all
+        reviews.to_json
+      end
+            # POST /comment
+      post '/reviews' do
+        reviews = Review.create(name: params[:name], comments: params[:comments])
+        reviews.to_json
+      end
+
 end
